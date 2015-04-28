@@ -1,18 +1,3 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *
- * File	  : ConvexHull.C
- *
- * Author : Roberto Bruttomesso <bruttomesso@itc.it> 
- *
- * Contents
- *
- *  Compute the ConvexHull 
- *
- *  Copyright 2005 by the author(s).
- *  This code is relased under the GNU Lesser General Public License.
- *  
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 #include <CGAL/Homogeneous.h>
 #include <CGAL/convex_hull_3.h>
 #include <CGAL/Polyhedron_3.h>

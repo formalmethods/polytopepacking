@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
 
             stringstream lhs;
             lhs << "lhs_" << j;
-            cout << "(define-fun " << lhs.str() << " () (+ ";
+            cout << "(define-fun " << lhs.str() << " () Real (+ ";
 
             if (coeff != 0) {
                 cout << "(* " << -coeff << " p" << v1 << "x) (* " << coeff << " p" << v2 << "x)";
@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
             stringstream disj;
             disj << "disj_" << j;
             disj_list.push_back(disj.str());
-            cout << "(define-fun " << disj.str() << " () ";
+            cout << "(define-fun " << disj.str() << " () Bool ";
 
             // Less than
             fin >> temp; 
@@ -107,7 +107,8 @@ int main(int argc, char **argv) {
         stringstream orstr;
         orstr << "or_" << i;
         ors.push_back(orstr.str());
-        cout << "(define-fun " << orstr.str() << " () (implies " << orstr.str() << " (or"; 
+        cout << "(declare-fun " << orstr.str() << " () Bool)" << endl; 
+        cout << "(assert (implies " << orstr.str() << " (or"; 
         for (unsigned j = 0; j < disj_list.size(); j++) {
             cout << " " << disj_list[j];
         }
@@ -119,6 +120,8 @@ int main(int argc, char **argv) {
         cout << " " << ors[i];
     }
     cout << "))" << endl;
+    cout << "(check-sat)" << endl;
+    cout << "(get-model)" << endl;
 
     fin.close();
 

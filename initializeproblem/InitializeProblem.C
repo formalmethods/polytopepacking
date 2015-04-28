@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
   }
 
   cout << "(declare-fun dummy () Real)" << endl;
-  cout << "(define-fun h () " << h << ")" << endl;
+  cout << "(define-fun h () Real " << h << ".0)" << endl;
 
   for ( unsigned i=1; i <= polytopes_n; i++ ) {
 
@@ -61,9 +61,9 @@ int main(int argc, char **argv) {
     cout << "(assert (>= p" << i << "z" << " " << -min_z << "))" << endl; 
 
     // Upper bounds for the vectors
-    cout << "(assert (>= p" << i << "x" << " " << x_width - max_x << "))" << endl; 
-    cout << "(assert (>= p" << i << "y" << " " << y_width - max_y << "))" << endl; 
-    cout << "(assert (>= p" << i << "z" << " (- h " << max_z << ")))" << endl;
+    cout << "(assert (<= p" << i << "x" << " " << x_width - max_x << "))" << endl; 
+    cout << "(assert (<= p" << i << "y" << " " << y_width - max_y << "))" << endl; 
+    cout << "(assert (<= p" << i << "z" << " (- h " << max_z << ")))" << endl;
   } 
 
   fin.close();
