@@ -1,0 +1,4 @@
+# How to generate makefiles
+
+cgal_create_CMakeLists -s convexhull
+cmake .

@@ -22,31 +22,14 @@ int main(int argc, char **argv) {
 
   // Real Variables Declaration
 
-  cout << "VAR" << endl;
   for ( unsigned i=1; i <= polytopes_n; i++ ) {
-    cout << "p" << i << "x, ";
-    cout << "p" << i << "y, ";
-    cout << "p" << i << "z, ";
+    cout << "(declare-fun p" << i << "x () Real)" << endl;
+    cout << "(declare-fun p" << i << "y () Real)" << endl;
+    cout << "(declare-fun p" << i << "z () Real)" << endl;
   }
 
-  cout << "dummy : REAL" << endl;
-  cout << "DEFINE h : REAL := " << h << endl;
-
-  // Boolean Variable Declaration
-  
-  cout << "VAR" << endl;
-  for ( unsigned i=1; i <= (polytopes_n * (polytopes_n-1))/2; i++ ) {
-    cout << "or" << i;
-    if ( i != (polytopes_n * (polytopes_n-1))/2 )
-      cout << ", ";
-  }
-  cout << " : BOOLEAN" << endl << endl;
-
-  cout << "FORMULA" << endl;
-
-  // Height declaration
-  //cout << "h <= " << h << " and" << endl;
-  //cout << "h >= " << h << " and" << endl;
+  cout << "(declare-fun dummy () Real)" << endl;
+  cout << "(define-fun h () " << h << ")" << endl;
 
   for ( unsigned i=1; i <= polytopes_n; i++ ) {
 
@@ -73,24 +56,15 @@ int main(int argc, char **argv) {
     }
 
     // Lower Bounds for the vectors 
-    cout << "p" << i << "x" << " >= " << -min_x << " and" << endl; 
-    cout << "p" << i << "y" << " >= " << -min_y << " and" << endl; 
-    cout << "p" << i << "z" << " >= " << -min_z << " and" << endl; 
+    cout << "(assert (>= p" << i << "x" << " " << -min_x << "))" << endl; 
+    cout << "(assert (>= p" << i << "y" << " " << -min_y << "))" << endl; 
+    cout << "(assert (>= p" << i << "z" << " " << -min_z << "))" << endl; 
 
     // Upper bounds for the vectors
-    cout << "p" << i << "x" << " <= " << x_width - max_x << " and" << endl; 
-    cout << "p" << i << "y" << " <= " << y_width - max_y << " and" << endl; 
-    cout << "p" << i << "z" << " <= h - " << max_z << " and" << endl;
+    cout << "(assert (>= p" << i << "x" << " " << x_width - max_x << "))" << endl; 
+    cout << "(assert (>= p" << i << "y" << " " << y_width - max_y << "))" << endl; 
+    cout << "(assert (>= p" << i << "z" << " (- h " << max_z << ")))" << endl;
   } 
 
-  cout << "#" << endl;
-  
-  for ( unsigned i=1; i <= polytopes_n * (polytopes_n - 1)/2; i++ ) {
-    cout << "or" << i;
-    cout << " and ";
-  }
-
-  cout << endl << "#" << endl;
-  
   fin.close();
 }
