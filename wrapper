@@ -1,0 +1,21 @@
+#!/bin/tcsh
+
+if ( "$#" != 5) then
+  echo "Usage: ./wrapper <polytope-descriptions> <x-width> <y-width> <max-h> <output-file>"
+  exit
+endif
+
+echo 
+echo "LP problem generator, by Roberto Bruttomesso"
+echo
+echo "Initializing problem ... "
+initializeproblem/initializeproblem $1 $2 $3 $4 > $5
+echo "Computing the convex hulls ..."
+convexhull/convexhull $1 1 > tmp
+echo "Computing the non intersection constraints ..."
+processhull/processhull tmp >> $5
+
+rm -f tmp
+
+echo "Done ! The problem is stored in " $5
+echo
