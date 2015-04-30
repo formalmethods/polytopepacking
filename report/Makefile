@@ -1,4 +1,4 @@
-SOURCES=$(wildcard .tex)
+SOURCES=$(wildcard *.tex)
 
 main.pdf: $(SOURCES) biblio.bib
 	@pdflatex main.tex

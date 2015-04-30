@@ -1,3 +1,26 @@
 \section{Introduction}
+Polytope Packing is the problem of placing a given set of
+polytopes into a parallelepiped of given length and width
+with the goal of finding the minimal possible height that
+avoids polytopes collision (polytopes may touch but they
+cannot compenetrate). 
 
-\cite{sto03}
+The problem has been studied for instance by 
+Stoyan et. al in~\cite{sto03}. We take this paper as
+a reference and comparison for this report. More related
+work can be found in the aforementioned paper.
+
+Our approach is a plain encoding into an SMT formula. SMT,
+Satisfiability Modulo Theories, is an area of research
+that combines efficient SAT-Solving and domain-specific
+decision procedures to build efficient tools that could
+reason about, for instance, arbitraty boolean combinations 
+of linear arithmetic costraints. The encoding exploits
+the notion of Minkowski sum to formally describes concepts
+such as ``polytope intersection''.
+
+Therefore, the approach can be summarized as follows: 
+take a set of polytope descriptions, encode the problem
+into SMT, execute an SMT-Solver to find a solution (if any
+exists), read the solution and translate it back to
+coordinates that describes the polytopes placement.

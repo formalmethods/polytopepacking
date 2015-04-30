@@ -1,11 +1,18 @@
-\documentclass[a4paper]{report}
+\documentclass[a4paper]{paper}
 
-\title{Optimal Packing of Polytopes with an SMT-Solver}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Efficient Packing of 3D-Polytopes into a Parallelepiped using an SMT-Solver\footnote{
+This work dates back to 2005. We never had the chance to make it public before now.
+}}
+
+\author{Roberto Bruttomesso, Romeo Rizzi}
 
 \begin{document}
-\maketitle
-\input{abstract}
+\maketitle\input{abstract}
 \input{introduction}
+\input{notation}
 \input{minkowski}
 \input{encoding}
 \input{experiments}
