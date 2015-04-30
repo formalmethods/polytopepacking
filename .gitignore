@@ -7,3 +7,12 @@ CMakeFiles
 *.log
 *.bbl
 *.blg
+convexhull/Makefile
+convexhull/convexhull
+display/Makefile
+display/display
+initializeproblem/initializeproblem
+processhull/Makefile
+processhull/processhull
+randompara/randompara
+
