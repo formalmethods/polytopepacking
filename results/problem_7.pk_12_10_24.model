@@ -1,0 +1,45 @@
+sat
+(model 
+  (define-fun p5x () Real
+    2.0)
+  (define-fun p4x () Real
+    (/ 168.0 61.0))
+  (define-fun p1z () Real
+    (/ 907.0 61.0))
+  (define-fun p4y () Real
+    0.0)
+  (define-fun p6z () Real
+    (/ 383.0 549.0))
+  (define-fun p1y () Real
+    4.0)
+  (define-fun p2z () Real
+    4.0)
+  (define-fun p3z () Real
+    (/ 423.0 61.0))
+  (define-fun p4z () Real
+    12.0)
+  (define-fun p6y () Real
+    (/ 1582.0 549.0))
+  (define-fun p5y () Real
+    6.0)
+  (define-fun p7z () Real
+    19.0)
+  (define-fun p2x () Real
+    4.0)
+  (define-fun p7y () Real
+    5.0)
+  (define-fun p3y () Real
+    (/ 322.0 61.0))
+  (define-fun p3x () Real
+    4.0)
+  (define-fun p2y () Real
+    0.0)
+  (define-fun p6x () Real
+    6.0)
+  (define-fun p1x () Real
+    (/ 59.0 61.0))
+  (define-fun p5z () Real
+    6.0)
+  (define-fun p7x () Real
+    (/ 422.0 61.0))
+)

@@ -1,0 +1,45 @@
+sat
+(model 
+  (define-fun p5x () Real
+    (/ 54344761683734.0 5435348632773.0))
+  (define-fun p4x () Real
+    (/ 53363906371753.0 10870697265546.0))
+  (define-fun p1z () Real
+    (/ 404449789593870.0 19929611653501.0))
+  (define-fun p4y () Real
+    6.0)
+  (define-fun p6z () Real
+    0.0)
+  (define-fun p1y () Real
+    (/ 238854442595468.0 59788834960503.0))
+  (define-fun p2z () Real
+    (/ 65144886488788.0 5435348632773.0))
+  (define-fun p3z () Real
+    (/ 231447936350672.0 19929611653501.0))
+  (define-fun p4z () Real
+    (/ 27167301515504.0 5435348632773.0))
+  (define-fun p6y () Real
+    (/ 103565519610655.0 59788834960503.0))
+  (define-fun p5y () Real
+    (/ 299226105718283.0 59788834960503.0))
+  (define-fun p7z () Real
+    25.0)
+  (define-fun p2x () Real
+    3.0)
+  (define-fun p7y () Real
+    5.0)
+  (define-fun p3y () Real
+    6.0)
+  (define-fun p3x () Real
+    (/ 9881117309569.0 10870697265546.0))
+  (define-fun p2y () Real
+    (/ 214598483480.0 59788834960503.0))
+  (define-fun p6x () Real
+    6.0)
+  (define-fun p1x () Real
+    (/ 626895710896817.0 119577669921006.0))
+  (define-fun p5z () Real
+    15.0)
+  (define-fun p7x () Real
+    (/ 39866160414726.0 19929611653501.0))
+)

@@ -12,7 +12,6 @@
 #include <map>
 #include <cstdlib>
 #include <cstdio>
-#include <cassert>
 
 #define DEBUG 0
 
@@ -24,13 +23,13 @@ typedef CGAL::Gmpz RT;
 typedef CGAL::MP_Float RT;
 #endif
 
-typedef CGAL::Homogeneous<RT>                     Kernel;
-typedef CGAL::Polyhedron_3<Kernel>		  Polyhedron;
-typedef Kernel::Point_3                           Point;
-typedef Kernel::Plane_3				  Plane;
-typedef Kernel::Segment_3			  Segment;
-typedef std::vector<Point>			  PointSet;
-typedef std::vector<PointSet>			  PolySet;
+typedef CGAL::Homogeneous<RT> Kernel;
+typedef CGAL::Polyhedron_3<Kernel> Polyhedron;
+typedef Kernel::Point_3 Point;
+typedef Kernel::Plane_3 Plane;
+typedef Kernel::Segment_3 Segment;
+typedef std::vector<Point> PointSet;
+typedef std::vector<PointSet> PolySet;
 
 #define DEBUG 0
 
@@ -77,8 +76,9 @@ int main(int argc, char **argv) {
 
     stringstream pix, piy, piz;
 
-    pix << "p" << i << "x"; piy << "p" << i << "y"; piz << "p" << i << "z"; 
-      
+    pix << "p" << i << "x"; 
+    piy << "p" << i << "y"; 
+    piz << "p" << i << "z"; 
     
     for ( unsigned j=1; j <= vertex_n; j++ ) {
 
@@ -86,9 +86,9 @@ int main(int argc, char **argv) {
       fin >> y;
       fin >> z;
 
-      pointset.push_back(Point((x + v2v[ pix.str() ]),
-			       (y + v2v[ piy.str() ]),
-			       (z + v2v[ piz.str() ]))); 
+      pointset.push_back(Point((x + v2v[pix.str()]),
+			                   (y + v2v[piy.str()]),
+			                   (z + v2v[piz.str()]))); 
 
     }
 
@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
       //std::cerr << "Convex hull is a point" << std::endl;
     } else {
       std::cerr << "An error occured" << std::endl;
-      exit(-1);
+      exit(1);
     }
     
     CGAL::VRML_2_ostream out( std::cout );
@@ -124,24 +124,59 @@ int main(int argc, char **argv) {
 void parse_values(var2values &v2v, fstream &fin) {
 
   string token, var;
-  const string delim = "#";
   double value;
 
   do {
-    
-    // Get the variable or #
     fin >> token;
+    if (fin.eof()) {
+        break;
+    }
 
-    if ( token == delim )
-      continue;
+    if (token == "sat" ||
+        token == "(model" ||
+        token == "()" ||
+        token == ")") {
+        continue;
+    }
 
+    if (token == "unsat") {
+        cout << "Problem was unsat" << endl;
+        exit(1);
+    }
+
+    assert(token == "(define-fun");
+    fin >> token;
     var = token;
-    // Get the =
     fin >> token;
-    // Get the value
-    fin >> value;
-    // Store the value   
-    v2v[ var ] = value; 
+    assert(token == "()");
+    fin >> token;
+    assert(token == "Real");
+    char c; 
+    fin >> c;
+    if (c == '(') {
+        fin >> token;
+        assert(token == "(/");
+        double num, den;
+        fin >> num;
+        fin >> den;
+        value = num/den;
+        fin >> c;
+        assert(c == ')');
+    } else {
+        fin.putback(c);
+        fin >> value;
+    }
+    fin >> token;
+    assert(token == ")");
+    v2v[var] = value; 
+    assert(0);
     
-  } while(token != delim);
+  } while(!fin.eof());
+
+#if DEBUG
+  var2values::iterator it = v2v.begin();  
+  for (; it != v2v.end(); it++) {
+      cout << it->first << " -> " << it->second << endl;
+  }
+#endif
 }

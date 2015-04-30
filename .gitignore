@@ -3,3 +3,7 @@ CMakeCache.txt
 CMakeLists.txt
 CMakeFiles
 *.cmake
+*.aux
+*.log
+*.bbl
+*.blg

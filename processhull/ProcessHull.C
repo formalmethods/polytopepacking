@@ -36,7 +36,9 @@ int main(int argc, char **argv) {
         cont++;
         v2++;
 
-        fin >> p1; fin >> p2; fin >> facets_n;
+        fin >> p1; 
+        fin >> p2; 
+        fin >> facets_n;
 
         vector<string> disj_list;
 
@@ -49,11 +51,11 @@ int main(int argc, char **argv) {
             bool second = false;
 
             stringstream lhs;
-            lhs << "lhs_" << j;
+            lhs << "lhs_" << i << "_" << j;
             cout << "(define-fun " << lhs.str() << " () Real (+ ";
 
             if (coeff != 0) {
-                cout << "(* " << -coeff << " p" << v1 << "x) (* " << coeff << " p" << v2 << "x)";
+                cout << "(* " << -coeff << " p" << v1 << "x) (* " << coeff << " p" << v2 << "x) ";
                 second = true;	
             }
 
@@ -66,7 +68,7 @@ int main(int argc, char **argv) {
             fin >> coeff;
 
             if (coeff != 0) {
-                cout << "(* " << -coeff << " p" <<  v1 << "y) (* " << coeff << " p" << v2 << "y)";
+                cout << "(* " << -coeff << " p" <<  v1 << "y) (* " << coeff << " p" << v2 << "y) ";
                 second = true;
             }
 
@@ -92,7 +94,7 @@ int main(int argc, char **argv) {
             fin >> coeff;
 
             stringstream disj;
-            disj << "disj_" << j;
+            disj << "disj_" << i << "_" << j;
             disj_list.push_back(disj.str());
             cout << "(define-fun " << disj.str() << " () Bool ";
 
@@ -104,22 +106,13 @@ int main(int argc, char **argv) {
             cout << "(>= " << lhs.str() << " " << -coeff << "))" << endl;
         }
 
-        stringstream orstr;
-        orstr << "or_" << i;
-        ors.push_back(orstr.str());
-        cout << "(declare-fun " << orstr.str() << " () Bool)" << endl; 
-        cout << "(assert (implies " << orstr.str() << " (or"; 
+        cout << "(assert (or"; 
         for (unsigned j = 0; j < disj_list.size(); j++) {
             cout << " " << disj_list[j];
         }
-        cout << ")))" << endl; // closes implies
+        cout << "))" << endl; // closes implies
     }
 
-    cout << "(assert (and";
-    for (unsigned i = 0; i < ors.size(); i++) {
-        cout << " " << ors[i];
-    }
-    cout << "))" << endl;
     cout << "(check-sat)" << endl;
     cout << "(get-model)" << endl;
 
