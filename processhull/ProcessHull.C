@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2005 Roberto Bruttomesso
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of 
+ * this software and associated documentation files (the "Software"), to deal in 
+ * the Software without restriction, including without limitation the rights to 
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+ * of the Software, and to permit persons to whom the Software is furnished to do 
+ * so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all 
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+ * SOFTWARE.
+ */
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -29,9 +50,9 @@ int main(int argc, char **argv) {
     v2 = 1;
     cont = 1;
 
-    for (unsigned i=1; i <= hulls_n; i++) {
+    for (unsigned i = 1; i <= hulls_n; i++) {
 
-        if ( cont == poly_n ) { v1++; cont=v1; v2=v1; }
+        if (cont == poly_n) { v1++; cont=v1; v2=v1; }
 
         cont++;
         v2++;
@@ -42,9 +63,7 @@ int main(int argc, char **argv) {
 
         vector<string> disj_list;
 
-        for ( unsigned j=1; j <= facets_n; j++ ) {
-
-            // Coefficient of x
+        for (unsigned j = 1; j <= facets_n; j++) {
 
             fin >> coeff;
 
@@ -62,9 +81,6 @@ int main(int argc, char **argv) {
             fin >> temp;  // skip the *
             fin >> temp;  // skip the variable
             fin >> temp;  // skip the +
-
-            // Coefficient of y
-
             fin >> coeff;
 
             if (coeff != 0) {
@@ -75,9 +91,6 @@ int main(int argc, char **argv) {
             fin >> temp;  // skip the *
             fin >> temp;  // skip the variable
             fin >> temp;  // skip the +
-
-            // Coefficient of z
-
             fin >> coeff;
 
             if (coeff != 0) {
@@ -90,7 +103,6 @@ int main(int argc, char **argv) {
 
             cout << "))" << endl; // closes + and define-fun
 
-            // Constant
             fin >> coeff;
 
             stringstream disj;
@@ -98,7 +110,6 @@ int main(int argc, char **argv) {
             disj_list.push_back(disj.str());
             cout << "(define-fun " << disj.str() << " () Bool ";
 
-            // Less than
             fin >> temp; 
             fin >> temp; 
             fin >> temp;
@@ -110,7 +121,7 @@ int main(int argc, char **argv) {
         for (unsigned j = 0; j < disj_list.size(); j++) {
             cout << " " << disj_list[j];
         }
-        cout << "))" << endl; // closes implies
+        cout << "))" << endl;
     }
 
     cout << "(check-sat)" << endl;

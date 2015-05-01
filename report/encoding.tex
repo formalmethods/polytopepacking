@@ -40,17 +40,17 @@ area ``outside'' $P_i \ominus P_j$ is therefore
 \end{eqnarray}
 Technically we should use strict inequalities $>$, however
 we may allow polytopes to ``touch'' on a common point. At last
-we can specify that $\point{v_i} - \point{v_j}$ is in the
+we can specify that $\point{v_j} - \point{v_i}$ is in the
 area outside $P_i \ominus P_j$ with the following substitution
 \begin{eqnarray}
 \nonumber
-&      & c_{1_x} (v_{i_x} - v_{j_x}) + c_{1_y} (v_{i_y} - v_{j_y}) + c_{1_z} (v_{i_z}-v_{j_z}) \geq c_1 \\
+&      & c_{1_x} (v_{j_x} - v_{i_x}) + c_{1_y} (v_{j_y} - v_{i_y}) + c_{1_z} (v_{j_z}-v_{i_z}) \geq c_1 \\
 \nonumber
-& \vee & c_{2_x} (v_{i_x} - v_{j_x}) + c_{2_y} (v_{i_y} - v_{j_y}) + c_{2_z} (v_{i_z}-v_{j_z}) \geq c_2 \\
+& \vee & c_{2_x} (v_{j_x} - v_{i_x}) + c_{2_y} (v_{j_y} - v_{i_y}) + c_{2_z} (v_{j_z}-v_{i_z}) \geq c_2 \\
 \label{eq:smt1}
 & \vee &\ldots \\                                                                                    
 \nonumber
-& \vee & c_{n_x} (v_{i_x} - v_{j_x}) + c_{n_y} (v_{i_y} - v_{j_y}) + c_{n_z} (v_{i_z}-v_{j_z}) \geq c_n
+& \vee & c_{n_x} (v_{j_x} - v_{i_x}) + c_{n_y} (v_{j_y} - v_{i_y}) + c_{n_z} (v_{j_z}-v_{i_z}) \geq c_n
 \end{eqnarray}
 In addition to the constraints above, we need to specify the ``borders'' of the parallelepiped. Suppose
 that the parallelepiped measures $l$,$w$,$h$ of length, witdth, and height respectively, and let
