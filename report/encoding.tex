@@ -1,1 +1,72 @@
-\section{Encoding}
+\section{Encoding polytope placement into SMT}
+
+Let's now focus on the task of placing polytopes into a parallelepiped. 
+Informally, the placement is carried out by means of a vector 
+for each polytope, which translates the polytope with respect to the
+origin. The polytope packing problem is then the problem of finding
+such placement vectors, which may or may not exist, depending on the
+particular instance to solve.
+
+Formally, given a set of polytopes $P_1, \ldots, P_n$, we need to find
+placement vectors $\point{v_1}, \ldots, \point{v_n}$ such that for $i\not=j$
+$$(\point{v_i}+P_i) \cap (\point{v_j}+P_j) \not= \emptyset$$ 
+which means that $i\not=j$
+$$(\point{v_i} - \point{v_j}) \not\in (P_i \ominus P_j).$$
+
+The latter condition can be translated into a constraint satisfaction
+problem. In particular $P_i \ominus P_j$ is a polytope that can be
+defined by the intersection of a set of linear inequalities
+\begin{eqnarray}
+\nonumber
+&        & c_{1_x} x + c_{1_y} y + c_{1_z} z \leq c_1 \\
+\nonumber
+& \wedge & c_{2_x} x + c_{2_y} y + c_{2_z} z \leq c_2 \\
+\nonumber
+& \wedge & \ldots \\
+\nonumber
+& \wedge & c_{n_x} x + c_{n_y} y + c_{n_z} z \leq c_n
+\end{eqnarray}
+where each representing a faced of the polytope. The
+area ``outside'' $P_i \ominus P_j$ is therefore
+\begin{eqnarray}
+\nonumber
+&      & c_{1_x} x + c_{1_y} y + c_{1_z} z \geq c_1 \\
+\nonumber
+& \vee & c_{2_x} x + c_{2_y} y + c_{2_z} z \geq c_2 \\
+\nonumber
+& \vee & \ldots \\
+\nonumber
+& \vee & c_{n_x} x + c_{n_y} y + c_{n_z} z \geq c_n
+\end{eqnarray}
+Technically we should use strict inequalities $>$, however
+we may allow polytopes to ``touch'' on a common point. At last
+we can specify that $\point{v_i} - \point{v_j}$ is in the
+area outside $P_i \ominus P_j$ with the following substitution
+\begin{eqnarray}
+\nonumber
+&      & c_{1_x} (v_{i_x} - v_{j_x}) + c_{1_y} (v_{i_y} - v_{j_y}) + c_{1_z} (v_{i_z}-v_{j_z}) \geq c_1 \\
+\nonumber
+& \vee & c_{2_x} (v_{i_x} - v_{j_x}) + c_{2_y} (v_{i_y} - v_{j_y}) + c_{2_z} (v_{i_z}-v_{j_z}) \geq c_2 \\
+\label{eq:smt1}
+& \vee &\ldots \\                                                                                    
+\nonumber
+& \vee & c_{n_x} (v_{i_x} - v_{j_x}) + c_{n_y} (v_{i_y} - v_{j_y}) + c_{n_z} (v_{i_z}-v_{j_z}) \geq c_n
+\end{eqnarray}
+In addition to the constraints above, we need to specify the ``borders'' of the parallelepiped. Suppose
+that the parallelepiped measures $l$,$w$,$h$ of length, witdth, and height respectively, and let
+$x_\downarrow(P_i), x_\uparrow(P_i)$, the lowest and highest $x$ coordinate of $P_i$, 
+$y_\downarrow(P_i), y_\uparrow(P_i)$, the lowest and highest $y$ coordinate of $P_i$, 
+$z_\downarrow(P_i), z_\uparrow(P_i)$, the lowest and highest $z$ coordinate of $P_i$. Then we
+need to encode for all $i$
+\begin{eqnarray}
+\nonumber
+&& 0 \leq v_{i_x} + x_\downarrow(P_i) \wedge v_{i_x} + x_\uparrow(P_i) \leq l \\
+\label{eq:smt2}
+&& 0 \leq v_{i_y} + y_\downarrow(P_i) \wedge v_{i_y} + y_\uparrow(P_i) \leq w \\
+\nonumber
+&& 0 \leq v_{i_z} + z_\downarrow(P_i) \wedge v_{i_z} + z_\uparrow(P_i) \leq h
+\end{eqnarray}
+By encoding (\ref{eq:smt1}) and (\ref{eq:smt2}) into the SMT language, we can find
+values of $\point{v_i}$ for each $P_i$ that represent a polytope placement such
+that the polytopes (may touch but) do not intersect and such that
+is contained in the given parallelepiped.

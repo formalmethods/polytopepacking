@@ -1,1 +1,48 @@
 \section{Minkowski sum and difference}
+
+Given two points $\point{p_1} = (x_1, y_1, z_1)$ and $\point{p_2} = (x_2, y_2, z_2)$ we define
+their sum as usual as the point 
+$\point{p_1} + \point{p_2} = (x_1+x_2, y_1+y_2, z_1+z_2)$,
+and their difference as the point
+$\point{p_1} - \point{p_2} = (x_1-x_2, y_1-y_2, z_1-z_2)$.
+Given two polytopes $P_1$ and $P_2$, the Minkowski sum is a polytope $P_1 \oplus P_2$
+defined as
+$$
+P_1 \oplus  P_2 = \{ \point{p_1} + \point{p_2} \ \vert\ \point{p_1} \in P_1, \point{p_2} \in P_2 \}.
+$$
+Similarly, the Minkowski difference is defined as
+$$
+P_1 \ominus P_2 = \{ \point{p_1} - \point{p_2} \ \vert\ \point{p_1} \in P_1, \point{p_2} \in P_2 \}.
+$$
+A useful and well-known property of the Minkowski difference is the following. 
+\begin{property}
+\label{pro:mink}
+two polytopes $P_1$,$P_2$ 
+are intersecting if and only if 
+$\point{0} \in (P_1 \ominus P_2).$
+\end{property}
+
+Consider now translating $P_1$ and $P_2$ by
+respectively vectors $\point{v_1}$ and $\point{v_2}$. 
+We have that $\point{v_1}+P_1$ and $\point{v_2}+P_2$
+intersect if and only if 
+$\point{0} \in ((\point{v_1}+P_1) \ominus (\point{v_2}+P_2))$.
+The following chain of relations hold
+\begin{eqnarray}
+\nonumber
+& & \point{0} \in ((\point{v_1}+P_1) \ominus (\point{v_2}+P_2)) \\
+\nonumber
+& \Leftrightarrow & \point{0} \in \{ (\point{p_1}+\point{v_1}) - (\point{p_2}+\point{v_2}) \ \vert\ (\point{p_1} + \point{v_1}) \in P_1, (\point{p_2} + \point{v_2}) \in P_2 \} \\
+\nonumber
+& \Leftrightarrow & \point{v_1} \in \{ \point{p_1} - (\point{p_2}+\point{v_2}) \ \vert\ \point{p_1} \in P_1, (\point{p_2} + \point{v_2}) \in P_2 \} \\
+\nonumber
+& \Leftrightarrow & (\point{v_1} - \point{v_2}) \in \{ \point{p_1} - \point{p_2} \ \vert\ \point{p_1} \in P_1, \point{p_2} \in P_2 \} \\
+\label{eq:chain}
+& \Leftrightarrow & (\point{v_1} - \point{v_2}) \in (P_1 \ominus P_2)
+\end{eqnarray}
+We interpret (\ref{eq:chain}) as follows: take two vectors 
+$\point{v_1}$, $\point{v_2}$ for translating
+$P_1$ and $P_2$ respectively. The two translated polytopes 
+intersect if and only if the difference
+vector is contained in the Minkowski difference.
+
