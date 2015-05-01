@@ -14,10 +14,10 @@ Similarly, the Minkowski difference is defined as
 $$
 P_1 \ominus P_2 = \{ \point{p_1} - \point{p_2} \ \vert\ \point{p_1} \in P_1, \point{p_2} \in P_2 \}.
 $$
-A useful and well-known property of the Minkowski difference is the following. 
+An obvious property of the Minkowski difference is the following. 
 \begin{property}
 \label{pro:mink}
-two polytopes $P_1$,$P_2$ 
+Two polytopes $P_1$,$P_2$ 
 are intersecting if and only if 
 $\point{0} \in (P_1 \ominus P_2).$
 \end{property}
@@ -34,11 +34,11 @@ The following chain of relations hold
 \nonumber
 & \Leftrightarrow & \point{0} \in \{ (\point{p_1}+\point{v_1}) - (\point{p_2}+\point{v_2}) \ \vert\ (\point{p_1} + \point{v_1}) \in P_1, (\point{p_2} + \point{v_2}) \in P_2 \} \\
 \nonumber
-& \Leftrightarrow & \point{v_1} \in \{ \point{p_1} - (\point{p_2}+\point{v_2}) \ \vert\ \point{p_1} \in P_1, (\point{p_2} + \point{v_2}) \in P_2 \} \\
+& \Leftrightarrow & -\point{v_1} \in \{ \point{p_1} - (\point{p_2}+\point{v_2}) \ \vert\ \point{p_1} \in P_1, (\point{p_2} + \point{v_2}) \in P_2 \} \\
 \nonumber
-& \Leftrightarrow & (\point{v_1} - \point{v_2}) \in \{ \point{p_1} - \point{p_2} \ \vert\ \point{p_1} \in P_1, \point{p_2} \in P_2 \} \\
+& \Leftrightarrow & (\point{v_2} - \point{v_1}) \in \{ \point{p_1} - \point{p_2} \ \vert\ \point{p_1} \in P_1, \point{p_2} \in P_2 \} \\
 \label{eq:chain}
-& \Leftrightarrow & (\point{v_1} - \point{v_2}) \in (P_1 \ominus P_2)
+& \Leftrightarrow & (\point{v_2} - \point{v_1}) \in (P_1 \ominus P_2)
 \end{eqnarray}
 We interpret (\ref{eq:chain}) as follows: take two vectors 
 $\point{v_1}$, $\point{v_2}$ for translating

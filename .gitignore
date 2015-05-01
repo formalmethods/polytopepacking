@@ -15,4 +15,5 @@ initializeproblem/initializeproblem
 processhull/Makefile
 processhull/processhull
 randompara/randompara
+*.out
 

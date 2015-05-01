@@ -1,0 +1,9 @@
+sat
+(model 
+  (define-fun p1y () Real
+    0.0)
+  (define-fun p1z () Real
+    4.0)
+  (define-fun p1x () Real
+    3.0)
+)

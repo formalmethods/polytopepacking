@@ -8,10 +8,10 @@ such placement vectors, which may or may not exist, depending on the
 particular instance to solve.
 
 Formally, given a set of polytopes $P_1, \ldots, P_n$, we need to find
-placement vectors $\point{v_1}, \ldots, \point{v_n}$ such that for $i\not=j$
+placement vectors $\point{v_1}, \ldots, \point{v_n}$ such that for $0\leq i<j \leq n$
 $$(\point{v_i}+P_i) \cap (\point{v_j}+P_j) \not= \emptyset$$ 
-which means that $i\not=j$
-$$(\point{v_i} - \point{v_j}) \not\in (P_i \ominus P_j).$$
+which means that for $0 \leq i<j \leq n$
+$$(\point{v_j} - \point{v_i}) \not\in (P_i \ominus P_j).$$
 
 The latter condition can be translated into a constraint satisfaction
 problem. In particular $P_i \ominus P_j$ is a polytope that can be
@@ -26,7 +26,7 @@ defined by the intersection of a set of linear inequalities
 \nonumber
 & \wedge & c_{n_x} x + c_{n_y} y + c_{n_z} z \leq c_n
 \end{eqnarray}
-where each representing a faced of the polytope. The
+each representing a faced of the polytope. The
 area ``outside'' $P_i \ominus P_j$ is therefore
 \begin{eqnarray}
 \nonumber
@@ -66,7 +66,7 @@ need to encode for all $i$
 \nonumber
 && 0 \leq v_{i_z} + z_\downarrow(P_i) \wedge v_{i_z} + z_\uparrow(P_i) \leq h
 \end{eqnarray}
-By encoding (\ref{eq:smt1}) and (\ref{eq:smt2}) into the SMT language, we can find
+By encoding (\ref{eq:smt1}) and (\ref{eq:smt2}) into the SMT2~\cite{SMTLIB} language, we can find
 values of $\point{v_i}$ for each $P_i$ that represent a polytope placement such
 that the polytopes (may touch but) do not intersect and such that
 is contained in the given parallelepiped.
