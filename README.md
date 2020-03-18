@@ -24,6 +24,6 @@ instruction for its compilation.
 Directory benchmark contains some problems that could be already run.
 For instance you can try with
 
-    ./go benchmarks/problem_7.pk 12 10 30
+    ./go benchmark/problem_7.pk 12 10 30
 
 You will find the results under results/problem_7.pk_12_10_30.*
